@@ -54,3 +54,14 @@ app.get("/products", async (req, res) => {
 app.listen(4000, () => {
   console.log("Backend running on http://localhost:4000");
 });
+
+
+
+app.post("/cart/update", async (req, res) => {
+  const { userId, productId, delta } = req.body;
+
+  if (!userId || !productId || typeof delta !== "number") {
+    return res.status(400).json({ error: "Missing data" });
+  }
+
+  try {
